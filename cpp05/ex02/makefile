@@ -1,4 +1,4 @@
-NAME		=	Form
+NAME		=	Bureaucrat
 SRCS		=	main Bureaucrat Form
 SRC			=	${addsuffix .cpp, ${SRCS}}
 OBJ			=	${SRC:.cpp=.o}
