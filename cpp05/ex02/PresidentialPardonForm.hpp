@@ -3,7 +3,7 @@
 
 # include "AForm.hpp"
 
-class PresidentialPardonForm
+class PresidentialPardonForm: public AForm
 {
     private:
         std::string _target;

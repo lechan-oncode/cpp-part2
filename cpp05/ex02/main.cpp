@@ -1,37 +1,43 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include <iostream>
 
-int main()
-{
-        Bureaucrat boss("Alice", 1);
-        Bureaucrat intern("Bob", 150);
+int main() {
+    try {
+        Bureaucrat boss("Boss", 1);                // Highest grade
+        Bureaucrat intern("Intern", 150);          // Lowest grade
 
-        std::cout << "=== Initial Bureaucrats ===" << std::endl;
-        std::cout << boss << std::endl;
-        std::cout << intern << std::endl;
+        ShrubberyCreationForm shrub("home");
+        RobotomyRequestForm robo("Bender");
+        PresidentialPardonForm pardon("Marvin");
 
-        std::cout << "\n=== Creating Forms ===" << std::endl;
-        Form formA("Top Secret Form", 10, 5);
-        Form formB("Intern Report", 150, 150);
-
-        std::cout << formA << std::endl;
-        std::cout << formB << std::endl;
-
-        std::cout << "\n=== Signing Attempts ===" << std::endl;
-        intern.signForm(formA);   // should fail (too low)
-        boss.signForm(formA);     // should succeed
-
-        std::cout << formA << std::endl;
-
-        std::cout << "\n=== Invalid Form Creation ===" << std::endl;
-        try
-        {
-            Form invalid("Impossible Form", 0, 151); // should throw
+        std::cout << "\n--- Trying to execute unsigned forms ---\n";
+        try {
+            boss.executeForm(shrub);
+        } catch (std::exception &e) {
+            std::cout << "❌ " << e.what() << "\n";
         }
-        catch (const std::exception &e)
-        {
-            std::cerr << "Error: " << e.what() << std::endl;
-        }
+
+        std::cout << "\n--- Signing forms ---\n";
+        intern.signForm(shrub);   // should fail
+        boss.signForm(shrub);     // should succeed
+        boss.signForm(robo);
+        boss.signForm(pardon);
+
+        std::cout << "\n--- Executing forms ---\n";
+        boss.executeForm(shrub);
+        boss.executeForm(robo);
+        boss.executeForm(pardon);
+
+        std::cout << "\n--- Trying execution with low grade ---\n";
+        intern.executeForm(shrub); // should fail
+    }
+    catch (std::exception &e) {
+        std::cerr << "Fatal Error: " << e.what() << "\n";
+    }
 
     return 0;
 }

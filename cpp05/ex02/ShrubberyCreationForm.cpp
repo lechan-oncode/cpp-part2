@@ -1,11 +1,11 @@
 # include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(): AForm("ShrubberyCreationForm", false, 25, 5), _target("default")
+ShrubberyCreationForm::ShrubberyCreationForm(): AForm("ShrubberyCreationForm", 25, 5), _target("default")
 {
     std::cout << "Default constructor: ShrubberyCreationForm is created" << std::endl;
 };
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("ShrubberyCreationForm", false, 25, 5), _target(target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target): AForm("ShrubberyCreationForm", 25, 5), _target(target)
 {
     std::cout << "Parameterized constructor: ShrubberyCreationForm is created" << std::endl;
 };
@@ -16,7 +16,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &other)
     std::cout << "Copy constructor: ShrubberyCreationForm is copied" << std::endl;
 };
 
-ShrubberyCreationForm::ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other)
+ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
 {
     if (this != &other)
     {
@@ -31,7 +31,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
     std::cout << "Destructor: ShrubberyCreationForm is destroyed" << std::endl;
 };
 
-const char *ShrubberyCreationForm::CreationFailedExecpion() const throw()
+const char *ShrubberyCreationForm::CreationFailedException::what() const throw()
 {
     return ("Shrubbery Creation Form : failed to create");
 };
@@ -49,7 +49,7 @@ void ShrubberyCreationForm::execution() const
         outFile << "******" << std::endl;
         outFile << "  **  " << std::endl;
         outFile << " **** " << std::endl;
-        outFile.close;
+        outFile.close();
     }
     else
         throw CreationFailedException();

@@ -15,7 +15,7 @@ RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &other)
     std::cout << "Default constructor: RobotomyRequestForm is created" << std::endl;
 };
 
-RobotomyRequestForm::RobotomyRequestForm &operator=(const RobotomyRequestForm &other)
+RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &other)
 {
     if (this != &other)
     {
@@ -23,6 +23,7 @@ RobotomyRequestForm::RobotomyRequestForm &operator=(const RobotomyRequestForm &o
         _target = other._target;
     }
     std::cout << "Assignment operator: RobotomyRequestForm is assigned" << std::endl;
+    return *this;
 };
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -30,7 +31,7 @@ RobotomyRequestForm::~RobotomyRequestForm()
     std::cout << "Destructor: RobotomyRequestForm is destroyed" << std::endl;
 };
 
-const char *RobotomyRequestForm::CreationFailedException() const throw()
+const char *RobotomyRequestForm::CreationFailedException::what() const throw()
 {
     return ("Robomotmy request form : failed to create");
 };

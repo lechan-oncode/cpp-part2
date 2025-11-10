@@ -16,11 +16,11 @@ class ShrubberyCreationForm: public AForm
         ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);
         ~ShrubberyCreationForm();
 
-        class CreationFailedExecpion: public std::exception
+        class CreationFailedException: public std::exception
         {
             public:
                 virtual const char *what() const throw(); 
-        }
+        };
 };
 
 #endif

@@ -1,5 +1,5 @@
-NAME		=	Bureaucrat
-SRCS		=	main Bureaucrat Form
+NAME		=	MoreForm
+SRCS		=	main Bureaucrat AForm PresidentialPardonForm ShrubberyCreationForm  RobotomyRequestForm
 SRC			=	${addsuffix .cpp, ${SRCS}}
 OBJ			=	${SRC:.cpp=.o}
 
